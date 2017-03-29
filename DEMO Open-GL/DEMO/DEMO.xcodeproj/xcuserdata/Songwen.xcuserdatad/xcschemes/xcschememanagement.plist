@@ -7,22 +7,12 @@
 		<key>DEMO.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>CE87667B1D87A65D006DBBE4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CE8766941D87A65D006DBBE4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CE87669F1D87A65D006DBBE4</key>
+		<key>CE9B1CDC1D6F283300068816</key>
 		<dict>
 			<key>primary</key>
 			<true/>

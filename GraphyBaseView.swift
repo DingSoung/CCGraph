@@ -57,15 +57,15 @@ import UIKit
     internal func initialize() {
         self.isOpaque = false
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TreeMapView.tapGestureRecognized(recognizer:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GraphyBaseView.tapGestureRecognized(recognizer:)))
         tapGestureRecognizer.numberOfTapsRequired = 1
         self.addGestureRecognizer(tapGestureRecognizer)
         
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TreeMapView.tapGestureRecognized(recognizer:)))
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GraphyBaseView.tapGestureRecognized(recognizer:)))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         self.addGestureRecognizer(doubleTapGestureRecognizer)
         
-        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(SunburstView.pinchGestureRecognized(recognizer:)))
+        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(GraphyBaseView.pinchGestureRecognized(recognizer:)))
         pinchGestureRecognizer.delegate = self
         self.addGestureRecognizer(pinchGestureRecognizer)
     }

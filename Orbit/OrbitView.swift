@@ -51,18 +51,15 @@ public class OrbitView: GraphyBaseView {
         self.lastDrawedImage?.draw(in: rect)
         self.render.renderFrame(context: context, frame: rect, points: self.dots)
     }
-    
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.displayLinkTerminate(displayLink: &self.displayLink)
-        self.displayLink = CADisplayLink(target: self, selector: #selector(self.self.moveTickHandle))
-        self.displayLink?.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
-    }
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.displayLinkTerminate(displayLink: &self.displayLink)
-    }
-    
+    /*
+ self.displayLinkTerminate(displayLink: &self.displayLink)
+ self.displayLink = CADisplayLink(target: self, selector: #selector(self.self.moveTickHandle))
+ self.displayLink?.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+ 
+ self.displayLinkTerminate(displayLink: &self.displayLink)
+ */
+ 
     @objc final private func moveTickHandle() {
-        
         // code here...
         self.lastDrawedImage = self.image(alpha: 0.9)
         for index in 0..<self.dots.count {

@@ -7,7 +7,7 @@ import UIKit
     
     //MARK: - animate controller
     @IBInspectable public var animationDuration:CGFloat = 0.0
-    internal var displayLink:CADisplayLink?
+    public var displayLink:CADisplayLink?
     /// start ~ stop: 0~1.0
     private var ticker:CGFloat = 1.0
     public var animationPercent:CGFloat {
@@ -34,7 +34,7 @@ import UIKit
             self.displayLinkTerminate(displayLink: &self.displayLink)
         }
     }
-    final internal func displayLinkTerminate(displayLink: inout CADisplayLink?) {
+    final public func displayLinkTerminate(displayLink: inout CADisplayLink?) {
         if (displayLink != nil) {
             //displayLink?.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
             displayLink?.invalidate() // also will remove from run loop
@@ -89,8 +89,8 @@ import UIKit
     @objc open func pinchGestureRecognized(recognizer: UIPinchGestureRecognizer) {}
     
     // MARK: - touch
-    internal var lastTouchPoint = CGPoint.zero
-    internal var isTouchMoving = false
+    public var lastTouchPoint = CGPoint.zero
+    public var isTouchMoving = false
     public final override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.isTouchMoving {} else {super.touchesBegan(touches, with: event)}
         guard let location = touches.first?.location(in: self) else {return}

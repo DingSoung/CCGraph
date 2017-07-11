@@ -3,7 +3,7 @@
 
 import UIKit
 
-@IBDesignable public class GraphyBaseView: UIView, UIGestureRecognizerDelegate {
+@IBDesignable open class GraphyBaseView: UIView, UIGestureRecognizerDelegate {
     
     //MARK: - animate controller
     @IBInspectable public var animationDuration:CGFloat = 0.0
@@ -43,14 +43,14 @@ import UIKit
     }
     
     // MARK: - View life Cycle
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
     }
-    public override init(frame: CGRect) {
+    open override init(frame: CGRect) {
         super.init(frame: frame)
         self.initialize()
     }
-    public required init?(coder aDecoder: NSCoder) {
+    open required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.initialize()
     }
@@ -70,7 +70,7 @@ import UIKit
         self.addGestureRecognizer(pinchGestureRecognizer)
     }
     private var _size:CGSize?
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         if _size == self.bounds.size {
@@ -79,14 +79,14 @@ import UIKit
             self.animationPercent = 0
         }
     }
-    public override func draw(_ rect: CGRect) {}
+    open override func draw(_ rect: CGRect) {}
     deinit {
         self.displayLinkTerminate(displayLink: &self.displayLink)
     }
     
     // MARK: - guesture recgnizer
-    @objc public func tapGestureRecognized(recognizer: UITapGestureRecognizer) {}
-    @objc public func pinchGestureRecognized(recognizer: UIPinchGestureRecognizer) {}
+    @objc open func tapGestureRecognized(recognizer: UITapGestureRecognizer) {}
+    @objc open func pinchGestureRecognized(recognizer: UIPinchGestureRecognizer) {}
     
     // MARK: - touch
     internal var lastTouchPoint = CGPoint.zero
@@ -96,7 +96,7 @@ import UIKit
         guard let location = touches.first?.location(in: self) else {return}
         self.lastTouchPoint = location
     }
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else {return}
         let dx = location.x - lastTouchPoint.x
         let dy = location.y - lastTouchPoint.y
@@ -108,12 +108,12 @@ import UIKit
         }
         if self.isTouchMoving {} else {super.touchesMoved(touches, with: event)}
     }
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.isTouchMoving {} else {super.touchesEnded(touches, with: event)}
         if self.isTouchMoving {self.isTouchMoving = false}
         //do some thing
     }
-    public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.isTouchMoving {} else {super.touchesCancelled(touches, with: event)}
         if self.isTouchMoving {self.isTouchMoving = false}
         //do some thing

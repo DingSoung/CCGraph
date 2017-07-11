@@ -1,17 +1,26 @@
-# CCGraph
+[![Language](https://img.shields.io/badge/Swift-3.1-FFAC45.svg?style=flat)](https://swift.org/)
+[![Release](https://img.shields.io/github/release/DingSoung/Graph.svg)](https://github.com/DingSoung)
+[![Status](https://travis-ci.org/DingSoung/Graph.svg?branch=master)](https://travis-ci.org/DingSoung/Graph)
+[![Platform](http://img.shields.io/badge/platform-iOS-E9C2BD.svg?style=flat)](https://developer.apple.com)
+[![Carthage](https://img.shields.io/badge/carthage-Compatible-yellow.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/DingSoung/Extension/master/LICENSE.md)
+[![Donate](https://img.shields.io/badge/donate-Alipay-00BBEE.svg)](https://qr.alipay.com/paipai/downloadQrCodeImg.resource?code=aex06042bir8odhpd1fgs00)
+
+
+# Graph
 Core graphs and UIBezierPath
 
-# iOS QuartZ 2D绘图
+# QuartZ 2D
 
 ## 绘图要点
 1. 绘图需要在context上
 2. 区分(`UIKit` 和`Core Graphics`方式)
 
 ## 绘图方式
-|绘图方式|特点|说明|
-|:---|:---|:---|:---|
-|`Core Graphics`|在特定的context上绘制|`Core Graphics`更接近底层，更灵活|
-|`UIKit`|只能基于当前context绘制|接口简单，仅包含`UIImage`,`NSString`,`UIBezierPath`(是对`Core Graphics`框架关于path的封装), `UIColor`|
+| 绘图方式            | 特点              | 说明                                       |
+| :-------------- | :-------------- | :--------------------------------------- |
+| `Core Graphics` | 在特定的context上绘制  | `Core Graphics`更接近底层，更灵活                 |
+| `UIKit`         | 只能基于当前context绘制 | 接口简单，仅包含`UIImage`,`NSString`,`UIBezierPath`(是对`Core Graphics`框架关于path的封装), `UIColor` |
 
 ### UIKit方式
 * 步骤
@@ -68,16 +77,14 @@ guard let context = optionalContext else { return }
 * 默认情况下`UIView`不实现`drawRect`，会实现`drawLayer:inContext:`，程序不进入`drawRect`
 * UIView的子类如`UILabel`可能会实现`drawRect`，继承他们时，若重写`drawRect`需要调用`supper`
 * 若子类实现`drawRect`, `drawLayer:inContext`会调用`drawRect`
-[来源](https://www.zhihu.com/question/24387821)
+  [来源](https://www.zhihu.com/question/24387821)
 
 ## 异步线程绘制
 创建绘图上下文，准备绘图资源，生成图片，都是占用CPU时间的，最后一步提交GPU渲染也会卡当前线程
 
-|绘制线程|适用情况|代码|
-|:---|:---|:---|
-|异步线程|仅用于呈现画面，没有交互，容许延迟|任意context生成image，或调用`drawInRect`进一步绘制到界面上|
-|主线程|涉及到交互，需要实时绘制，则应当遵循UIKit|将绘图部分写在`drawRect`|
+| 绘制线程 | 适用情况                    | 代码                                       |
+| :--- | :---------------------- | :--------------------------------------- |
+| 异步线程 | 仅用于呈现画面，没有交互，容许延迟       | 任意context生成image，或调用`drawInRect`进一步绘制到界面上 |
+| 主线程  | 涉及到交互，需要实时绘制，则应当遵循UIKit | 将绘图部分写在`drawRect`                        |
 
 *另外还有OpenGL-ES(跨平台基于C API)绘图和Metal(基于OpenGL-ES封装的API，iOS8+ support) [DEMO](DEMO Open-GL/)
-
-![](DEMO/DEMO.gif)

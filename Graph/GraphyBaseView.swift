@@ -46,15 +46,15 @@ import UIKit
     open override func awakeFromNib() {
         super.awakeFromNib()
     }
-    open override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.initialize()
     }
-    open required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.initialize()
     }
-    internal func initialize() {
+    open func initialize() {
         self.isOpaque = false
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GraphyBaseView.tapGestureRecognized(recognizer:)))

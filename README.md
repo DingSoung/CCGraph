@@ -1,9 +1,10 @@
-[![Release](https://img.shields.io/github/release/DingSoung/Graph.svg)](https://github.com/DingSoung)
-[![Status](https://travis-ci.org/DingSoung/Graph.svg?branch=master)](https://travis-ci.org/DingSoung/Graph)
-[![Carthage](https://img.shields.io/badge/Carthage-compatible-yellow.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Language](https://img.shields.io/badge/Swift-3.1-FFAC45.svg?style=flat)](https://swift.org/)
-[![Platform](http://img.shields.io/badge/Platform-iOS-E9C2BD.svg?style=flat)](https://developer.apple.com)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-9EA59D.svg)](paypal.me/DingSongwen)
+![Release](https://img.shields.io/github/release/DingSoung/Graph.svg)
+![Status](https://travis-ci.org/DingSoung/Graph.svg?branch=master)
+![Carthage](https://img.shields.io/badge/Carthage-compatible-yellow.svg?style=flat)
+![Language](https://img.shields.io/badge/Swift-3.1-FFAC45.svg?style=flat)
+![Platform](http://img.shields.io/badge/Platform-iOS-E9C2BD.svg?style=flat)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-9EA59D.svg)](https://paypal.me/DingSongwen)
+
 # Graph
 Core graphs and UIBezierPath
 

@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     var commandQueue: MTLCommandQueue! = nil
     
     var timer: CADisplayLink! = nil
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,9 +34,9 @@ class ViewController: UIViewController {
         self.view.layer.addSublayer(self.metalLayer)
         
         let vertexData:[Float] = [
-            0.0, 1.0, 0.0,
-            -1.0, -1.0, 0.0,
-            1.0, -1.0, 0.0]
+            0.0, 0.5, 0.0,
+            -1.0, -0.5, 0.0,
+            1.0, -0.5, 0.0]
         let dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
         self.vertexBuffer = self.device.makeBuffer(bytes: vertexData, length: dataSize, options: MTLResourceOptions())
         
@@ -60,14 +60,19 @@ class ViewController: UIViewController {
         self.timer = CADisplayLink(target: self, selector: #selector(ViewController.gameloop))
         self.timer.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.metalLayer.frame = self.view.bounds
+    }
+    
     func render() {
-        guard let drawable = metalLayer.nextDrawable() else {return}
+        guard let drawable = self.metalLayer.nextDrawable() else {return}
         
         let renderPassDescriptor = MTLRenderPassDescriptor()
         renderPassDescriptor.colorAttachments[0].texture = drawable.texture
@@ -77,9 +82,9 @@ class ViewController: UIViewController {
         let commandBuffer = self.commandQueue.makeCommandBuffer()
         
         let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
-        renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3, instanceCount: 1)
+        renderEncoder.setRenderPipelineState(self.pipelineState)
+        renderEncoder.setVertexBuffer(self.vertexBuffer, offset: 0, at: 0)
+        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 3, instanceCount: 1)
         renderEncoder.endEncoding()
         
         commandBuffer.present(drawable)
@@ -89,8 +94,8 @@ class ViewController: UIViewController {
     func gameloop() {
         autoreleasepool {
             self.render()
-        } 
+        }
     }
-
+    
 }
 

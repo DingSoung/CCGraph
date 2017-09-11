@@ -41,14 +41,10 @@ class ViewController: UIViewController {
         self.vertexBuffer = self.device.makeBuffer(bytes: vertexData, length: dataSize, options: MTLResourceOptions())
         
         let defaultLibrary = device.newDefaultLibrary()
-        let fragmentProgram = defaultLibrary?.makeFunction(name: "basic_fragment")
-        let vertexProgram = defaultLibrary?.makeFunction(name: "basic_vertex")
-        
         let pipelineStateDescriptor = MTLRenderPipelineDescriptor()
-        pipelineStateDescriptor.vertexFunction = vertexProgram
-        pipelineStateDescriptor.fragmentFunction = fragmentProgram
+        pipelineStateDescriptor.vertexFunction = defaultLibrary?.makeFunction(name: "basic_vertex")
+        pipelineStateDescriptor.fragmentFunction = defaultLibrary?.makeFunction(name: "basic_fragment")
         pipelineStateDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
-        
         do {
             try self.pipelineState = self.device.makeRenderPipelineState(descriptor: pipelineStateDescriptor)
         } catch let error {

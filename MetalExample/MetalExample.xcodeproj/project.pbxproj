@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE6B1E1B1F69106600988A7E /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B1E1A1F69106600988A7E /* Renderer.swift */; };
 		CECAA6F81F457F6C0018FE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA6F71F457F6C0018FE84 /* AppDelegate.swift */; };
 		CECAA6FA1F457F6C0018FE84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA6F91F457F6C0018FE84 /* ViewController.swift */; };
 		CECAA6FD1F457F6C0018FE84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CECAA6FB1F457F6C0018FE84 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE6B1E1A1F69106600988A7E /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		CECAA6F41F457F6C0018FE84 /* MetalExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECAA6F71F457F6C0018FE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CECAA6F91F457F6C0018FE84 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				CECAA6F71F457F6C0018FE84 /* AppDelegate.swift */,
 				CECAA6F91F457F6C0018FE84 /* ViewController.swift */,
+				CE6B1E1A1F69106600988A7E /* Renderer.swift */,
 				CECAA7171F45860A0018FE84 /* Shader.metal */,
 				CECAA6FB1F457F6C0018FE84 /* Main.storyboard */,
 				CECAA6FE1F457F6C0018FE84 /* Assets.xcassets */,
@@ -207,6 +210,7 @@
 				CECAA7181F45860A0018FE84 /* Shader.metal in Sources */,
 				CECAA6FA1F457F6C0018FE84 /* ViewController.swift in Sources */,
 				CECAA6F81F457F6C0018FE84 /* AppDelegate.swift in Sources */,
+				CE6B1E1B1F69106600988A7E /* Renderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +420,7 @@
 				CECAA7131F457F6D0018FE84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CECAA7141F457F6D0018FE84 /* Build configuration list for PBXNativeTarget "MetalExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +429,7 @@
 				CECAA7161F457F6D0018FE84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

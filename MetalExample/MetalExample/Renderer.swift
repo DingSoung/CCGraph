@@ -3,18 +3,26 @@
 
 import MetalKit
 
+struct Constants {
+    var modelViewProjectionMatrix = matrix_identity_float4x4
+    var normalMatrix = matrix_identity_float3x3
+}
+
 class Renderer: NSObject {
     weak var layer: CAMetalLayer!
 
     let device: MTLDevice
     let commandQueue: MTLCommandQueue
-    //let texture: MTLTexture
+    let texture: MTLTexture
     let pipelineState: MTLRenderPipelineState
     let depthStencilState: MTLDepthStencilState
     let samplerState: MTLSamplerState
 
     var vertexBuffer: MTLBuffer! = nil
     var timer: CADisplayLink! = nil
+    var time = TimeInterval(0.0)
+
+    var constants = Constants()
     
     init?(metalLayer: CAMetalLayer) {
         layer = metalLayer;
@@ -30,7 +38,6 @@ class Renderer: NSObject {
         }
         commandQueue = device.makeCommandQueue()!
 
-        /*
         let textureLoader = MTKTextureLoader(device: device)
         let asset = NSDataAsset.init(name: "checkerboard")
         guard let data = asset?.data else {
@@ -42,7 +49,7 @@ class Renderer: NSObject {
         } catch {
             print("Unable to load texture from main bundle")
             return nil
-        }*/
+        }
 
         let defaultLibrary = device.makeDefaultLibrary()
         let pipelineStateDescriptor = MTLRenderPipelineDescriptor()
@@ -83,9 +90,29 @@ class Renderer: NSObject {
         self.timer.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
     }
 
+    func updateWithTimestep(_ timestep: TimeInterval) {
+        time = time + timestep
+
+        let modelToWorldMatrix = matrix4x4_rotation(Float(time) * 0.5, vector_float3(0.7, 1, 0))
+
+        let viewSize = layer.bounds.size
+        let aspectRatio = Float(viewSize.width / viewSize.height)
+        let verticalViewAngle = radians_from_degrees(65)
+        let nearZ: Float = 0.1
+        let farZ: Float = 100.0
+        let projectionMatrix = matrix_perspective(verticalViewAngle, aspectRatio, nearZ, farZ)
+
+        let viewMatrix = matrix_look_at(0, 0, 2.5, 0, 0, 0, 0, 1, 0)
+
+        let mvMatrix = matrix_multiply(viewMatrix, modelToWorldMatrix);
+        constants.modelViewProjectionMatrix = matrix_multiply(projectionMatrix, mvMatrix)
+        constants.normalMatrix = matrix_inverse_transpose(matrix_upper_left_3x3(mvMatrix))
+    }
+
     @objc func render() {
-        //let timestep = 1.0 / TimeInterval(view.preferredFramesPerSecond)
-        //updateWithTimestep(timestep)
+        let timestep = 1.0 / TimeInterval(30.0)
+        updateWithTimestep(timestep)
+
         guard let drawable = layer.nextDrawable() else { return }
         let renderPassDescriptor = MTLRenderPassDescriptor()
         renderPassDescriptor.colorAttachments[0].texture = drawable.texture
@@ -94,16 +121,16 @@ class Renderer: NSObject {
         guard let commandBuffer = commandQueue.makeCommandBuffer(),
             let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
             else { return }
-        //renderEncoder.pushDebugGroup("Draw Cube")
-        //renderEncoder.setFrontFacing(.counterClockwise)
-        //renderEncoder.setDepthStencilState(depthStencilState)
+        renderEncoder.pushDebugGroup("Draw Cube")
+        renderEncoder.setFrontFacing(.counterClockwise)
+        renderEncoder.setDepthStencilState(depthStencilState)
         renderEncoder.setRenderPipelineState(pipelineState)
         renderEncoder.setVertexBuffer(vertexBuffer, offset:0, index:0)
-        //renderEncoder.setVertexBytes(&constants, length: MemoryLayout<Constants>.size, at: 1)
-        //renderEncoder.setFragmentTexture(texture, at: 0)
-        //renderEncoder.setFragmentSamplerState(samplerState, at: 0)
-        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 3, instanceCount: 1)
-        //renderEncoder.popDebugGroup()
+        renderEncoder.setVertexBytes(&constants, length: MemoryLayout<Constants>.size, index: 1)
+        renderEncoder.setFragmentTexture(texture, index: 0)
+        renderEncoder.setFragmentSamplerState(samplerState, index: 0)
+        //renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 3, instanceCount: 1)
+        renderEncoder.popDebugGroup()
         renderEncoder.endEncoding()
         commandBuffer.present(drawable)
         commandBuffer.commit()

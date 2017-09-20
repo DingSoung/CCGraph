@@ -3,7 +3,9 @@
 
 import UIKit
 
-@IBDesignable open class GraphyBaseView: UIView, UIGestureRecognizerDelegate {
+@objcMembers
+@IBDesignable
+open class GraphBaseView: UIView, UIGestureRecognizerDelegate {
     
     //MARK: - animate controller
     @IBInspectable public var animationDuration:CGFloat = 0.0
@@ -15,7 +17,7 @@ import UIKit
             if self.animationDuration > 0 && newValue < 1.0 {
                 self.ticker = newValue
                 self.displayLinkTerminate(displayLink: &self.displayLink)
-                self.displayLink = CADisplayLink(target: self, selector: #selector(GraphyBaseView.animatePercentTickHandle))
+                self.displayLink = CADisplayLink(target: self, selector: #selector(GraphBaseView.animatePercentTickHandle))
                 self.displayLink?.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
             } else {
                 self.ticker = 1.0
@@ -57,15 +59,15 @@ import UIKit
     open func initialize() {
         self.isOpaque = false
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GraphyBaseView.tapGestureRecognized(recognizer:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GraphBaseView.tapGestureRecognized(recognizer:)))
         tapGestureRecognizer.numberOfTapsRequired = 1
         self.addGestureRecognizer(tapGestureRecognizer)
         
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GraphyBaseView.tapGestureRecognized(recognizer:)))
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GraphBaseView.tapGestureRecognized(recognizer:)))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         self.addGestureRecognizer(doubleTapGestureRecognizer)
         
-        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(GraphyBaseView.pinchGestureRecognized(recognizer:)))
+        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(GraphBaseView.pinchGestureRecognized(recognizer:)))
         pinchGestureRecognizer.delegate = self
         self.addGestureRecognizer(pinchGestureRecognizer)
     }

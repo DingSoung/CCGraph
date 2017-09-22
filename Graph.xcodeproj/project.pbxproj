@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE544EB91F750F6B00E40E11 /* WaterMarkRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE544EB81F750F6B00E40E11 /* WaterMarkRender.swift */; };
 		CEEC25321F14A57300195D88 /* Graph.h in Headers */ = {isa = PBXBuildFile; fileRef = CEEC25301F14A57300195D88 /* Graph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CEEC25391F14A5A700195D88 /* GraphBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC25381F14A5A700195D88 /* GraphBaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE544EB81F750F6B00E40E11 /* WaterMarkRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterMarkRender.swift; sourceTree = "<group>"; };
 		CEEC252D1F14A57300195D88 /* Graph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Graph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEC25301F14A57300195D88 /* Graph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
 		CEEC25311F14A57300195D88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 		CEEC252F1F14A57300195D88 /* Graph */ = {
 			isa = PBXGroup;
 			children = (
+				CE544EB81F750F6B00E40E11 /* WaterMarkRender.swift */,
 				CEEC25381F14A5A700195D88 /* GraphBaseView.swift */,
 				CEEC25301F14A57300195D88 /* Graph.h */,
 				CEEC25311F14A57300195D88 /* Info.plist */,
@@ -136,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE544EB91F750F6B00E40E11 /* WaterMarkRender.swift in Sources */,
 				CEEC25391F14A5A700195D88 /* GraphBaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

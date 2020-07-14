@@ -14,7 +14,7 @@ public class PieChartModel: NSObject {
     }
 }
 
-public class  PieChartView: GraphyBaseView {
+public class  PieChartView: GraphBaseView {
     @IBInspectable open var lineWidth:CGFloat = 1.0
     open var fillColor:UIColor = UIColor.brown
     open var models:[PieChartModel] = [

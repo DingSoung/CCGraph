@@ -8,7 +8,7 @@ public class WaterMarkRender: NSObject {
     /// angle 0~2 * pi, space 1~N
     class public final func render(context: CGContext,
                              text: String,
-                             attributes:[NSAttributedStringKey: Any]?,
+                             attributes:[NSAttributedString.Key: Any]?,
                              angle: CGFloat,
                              rect: CGRect,
                              scale: CGFloat) {

@@ -18,7 +18,7 @@ open class GraphBaseView: UIView, UIGestureRecognizerDelegate {
                 self.ticker = newValue
                 self.displayLinkTerminate(displayLink: &self.displayLink)
                 self.displayLink = CADisplayLink(target: self, selector: #selector(GraphBaseView.animatePercentTickHandle))
-                self.displayLink?.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+                self.displayLink?.add(to: RunLoop.current, forMode: .default)
             } else {
                 self.ticker = 1.0
                 self.setNeedsDisplay()

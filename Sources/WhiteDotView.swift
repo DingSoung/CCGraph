@@ -3,7 +3,7 @@
 
 import UIKit
 
-public class WhiteDotView: GraphyBaseView {
+public class WhiteDotView: GraphBaseView {
     
     @IBInspectable open var dimension:Int = 3
     @IBInspectable open var speed:CGFloat = 2

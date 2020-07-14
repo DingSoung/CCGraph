@@ -8,7 +8,3 @@
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-9EA59D.svg)](https://paypal.me/DingSongwen)
 
-
-基于CoreGraphic的View
-
-*另外还有OpenGL-ES(跨平台基于C API)绘图和Metal(基于OpenGL-ES封装的API，iOS8+ support) [DEMO](DEMO Open-GL/)

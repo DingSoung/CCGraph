@@ -1,8 +1,9 @@
 //  Created by Songwen Ding on 3/3/16.
 //  Copyright © 2016 DingSoung All rights reserved.
 
+
 import UIKit
-public class DescartesView: GraphyBaseView {
+public class DescartesView: GraphBaseView {
     @IBInspectable open var lineWidth:CGFloat = 3
     @IBInspectable open var lineColor:UIColor = UIColor.red
     @IBInspectable open var fillColor:UIColor = UIColor.clear

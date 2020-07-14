@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class OrbitView: GraphyBaseView {
+public class OrbitView: GraphBaseView {
     
     // MARK: - render property rconfig
     public var render = OrbitRender()
@@ -57,7 +57,7 @@ public class OrbitView: GraphyBaseView {
  self.displayLink?.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
  
  self.displayLinkTerminate(displayLink: &self.displayLink)
- */
+
  
     @objc final private func moveTickHandle() {
         // code here...
@@ -77,4 +77,5 @@ public class OrbitView: GraphyBaseView {
         self.setNeedsDisplay()
         //self.displayLinkTerminate(displayLink: &self.displayLink)
     }
+  */
 }

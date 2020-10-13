@@ -35,6 +35,12 @@ open class Label: View {
         }
         render.draw(context: &context)
     }
+
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return attributedText?.boundingRect(with: CGSize(width: size.width, height: 1000),
+                                            options: [.usesLineFragmentOrigin, .usesFontLeading],
+                                            context: nil).size ?? .zero
+    }
 }
 
 extension Label {

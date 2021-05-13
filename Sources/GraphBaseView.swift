@@ -5,7 +5,7 @@ import UIKit
 
 @objcMembers
 @IBDesignable
-open class GraphBaseView: UIView, UIGestureRecognizerDelegate {
+open class GraphBaseView: View, UIGestureRecognizerDelegate {
     
     //MARK: - animate controller
     @IBInspectable public var animationDuration:CGFloat = 0.0

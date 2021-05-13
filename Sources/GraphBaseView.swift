@@ -2,6 +2,7 @@
 //  Copyright © 2016 DingSoung. All rights reserved.
 
 import UIKit
+import Extension
 
 @objcMembers
 @IBDesignable

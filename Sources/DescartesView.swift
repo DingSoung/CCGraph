@@ -3,6 +3,7 @@
 
 
 import UIKit
+
 public class DescartesView: GraphBaseView {
     @IBInspectable open var lineWidth:CGFloat = 3
     @IBInspectable open var lineColor:UIColor = UIColor.red
